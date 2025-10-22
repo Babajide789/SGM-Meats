@@ -3,6 +3,7 @@ import { Button } from "./ui/button";
 // import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { products } from "./data/products";
 import { ProductCard } from "./ProductCard";
+import Image from "next/image";
 
 interface HomePageProps {
   onNavigate: (page: string) => void;
@@ -20,6 +21,12 @@ export function HomePage({ onNavigate }: HomePageProps) {
           alt="Hero background"
           className="absolute inset-0 w-full h-full object-cover"
         /> */}
+        <Image
+            src="/tomato-ball.jpg"
+            alt="Tomato Ball"
+            fill
+            priority
+        />
         <div className="absolute inset-0 bg-black/40" />
         <div className="relative z-10 text-center text-white px-4">
           <h1 className="mb-4">Fresh From Farm to Table</h1>
