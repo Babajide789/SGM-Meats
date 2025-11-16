@@ -33,7 +33,7 @@ export function Footer() {
           <div>
             <h4 className="mb-4">Shop</h4>
             <ul className="space-y-2 text-muted-foreground">
-              <li>Fresh Meat</li>
+              <li>SGM-Meat</li>
               <li>Vegetables</li>
               <li>Seafood</li>
               <li>Dairy & Eggs</li>

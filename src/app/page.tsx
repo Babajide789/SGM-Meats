@@ -2,16 +2,16 @@
 
 
 import { CheckoutPage } from "@/components/CheckOutPage";
-import { CartProvider } from "@/components/Context/CardContext";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { HomePage } from "@/components/HomePage";
 import { ShopPage } from "@/components/ShopPage";
 import { Toaster } from "@/components/ui/sonner";
+import { CartProvider } from "@/Context/CartContext";
 import { useState } from "react";
 
 
-export default function App() {
+export default function Home() {
   const [currentPage, setCurrentPage] = useState<string>("home");
 
   const handleNavigate = (page: string) => {

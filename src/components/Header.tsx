@@ -2,7 +2,7 @@ import { ShoppingCart, Menu, X } from "lucide-react";
 import { useState } from "react";
 import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
-import { useCart } from "./Context/CardContext";
+import { useCart } from "@/Context/CartContext";
 
 interface HeaderProps {
   onNavigate: (page: string) => void;
@@ -36,7 +36,7 @@ export function Header({ onNavigate, currentPage }: HeaderProps) {
                 />
               </svg>
             </div>
-            <span className="font-bold">FreshMarket</span>
+            <span className="font-bold">SGM-Meat</span>
           </button>
 
           {/* Desktop Navigation */}

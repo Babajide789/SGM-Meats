@@ -1,9 +1,11 @@
 import { ArrowRight } from "lucide-react";
 import { Button } from "./ui/button";
-// import { ImageWithFallback } from "./figma/ImageWithFallback";
-import { products } from "./data/products";
 import { ProductCard } from "./ProductCard";
 import Image from "next/image";
+import { products } from "@/data/products";
+import { SkeletonProductCard } from "./MyFeatures/SkeletonCard";
+import { useEffect, useState } from "react";
+
 
 interface HomePageProps {
   onNavigate: (page: string) => void;
@@ -12,21 +14,26 @@ interface HomePageProps {
 export function HomePage({ onNavigate }: HomePageProps) {
   const featuredProducts = products.slice(0, 4);
 
+  const [isLoading, setIsLoading] = useState(true);
+
+useEffect(() => {
+  const timer = setTimeout(() => setIsLoading(false), 600);
+  return () => clearTimeout(timer);
+}, []);
+
+
   return (
     <div className="flex-1">
       {/* Hero Section */}
       <section className="relative h-[600px] flex items-center justify-center overflow-hidden">
-        {/* <ImageWithFallback
-          src="https://images.unsplash.com/photo-1747503331142-27f458a1498c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmYXJtZXJzJTIwbWFya2V0JTIwZnJlc2glMjBmb29kfGVufDF8fHx8MTc2MTE1NDMyM3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-          alt="Hero background"
-          className="absolute inset-0 w-full h-full object-cover"
-        /> */}
         <Image
-            src="/tomato-ball.jpg"
-            alt="Tomato Ball"
-            fill
-            priority
-        />
+  src="/tomato-ball.jpg"
+  alt="Tomato Ball"
+  fill
+  placeholder="blur"
+  blurDataURL="/tomato-ball.jpg"
+/>
+
         <div className="absolute inset-0 bg-black/40" />
         <div className="relative z-10 text-center text-white px-4">
           <h1 className="mb-4">Fresh From Farm to Table</h1>
@@ -47,17 +54,21 @@ export function HomePage({ onNavigate }: HomePageProps) {
       {/* Featured Products */}
       <section className="container mx-auto px-4 py-16">
         <div className="text-center mb-12">
-          <h2 className="mb-4">Today&amps;s Fresh Picks</h2>
+          <h2 className="mb-4">Today&apos;s Fresh Picks</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
             Handpicked selection of the freshest meats, vegetables, and seafood
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          {featuredProducts.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </div>
+  {isLoading
+    ? Array.from({ length: 4 }).map((_, i) => <SkeletonProductCard key={i} />)
+    : featuredProducts.map((product) => (
+        <ProductCard key={product.id} product={product} />
+      ))
+  }
+</div>
+
 
         <div className="text-center">
           <Button

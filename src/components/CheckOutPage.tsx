@@ -7,7 +7,7 @@ import { Separator } from "./ui/separator";
 import { Minus, Plus, Trash2, ShoppingBag } from "lucide-react";
 // import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { toast } from "sonner";
-import { useCart } from "./Context/CardContext";
+import { useCart } from "@/Context/CartContext";
 
 interface CheckoutPageProps {
   onNavigate: (page: string) => void;
