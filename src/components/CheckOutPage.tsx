@@ -5,7 +5,6 @@ import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 import { Separator } from "./ui/separator";
 import { Minus, Plus, Trash2, ShoppingBag } from "lucide-react";
-// import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { toast } from "sonner";
 import { useCart } from "@/Context/CartContext";
 
@@ -88,19 +87,20 @@ export function CheckoutPage({ onNavigate }: CheckoutPageProps) {
                 {cart.map((item) => (
                   <div key={item.id}>
                     <div className="flex gap-4">
-                      <div className="w-24 h-24 rounded-lg overflow-hidden bg-muted shrink-0">
-                        {/* <ImageWithFallback
+                      
+                      {/* <div className="w-24 h-24 rounded-lg overflow-hidden bg-muted shrink-0">
+                        <ImageWithFallback
                           src={item.image}
                           alt={item.name}
                           className="w-full h-full object-cover"
-                        /> */}
-                      </div>
+                        />
+                      </div> */}
                       <div className="flex-1">
                         <h4 className="mb-1">{item.name}</h4>
                         <p className="text-sm text-muted-foreground mb-2">
                           {item.category}
                         </p>
-                        <p className="text-lg">${item.price.toFixed(2)}</p>
+                        <p className="text-lg">N{item.price.toFixed(2)}</p>
                       </div>
                       <div className="flex flex-col items-end justify-between">
                         <Button
@@ -188,7 +188,7 @@ export function CheckoutPage({ onNavigate }: CheckoutPageProps) {
               <CardContent className="space-y-4">
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">Subtotal</span>
-                  <span>${getCartTotal().toFixed(2)}</span>
+                  <span>N{getCartTotal().toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">Delivery</span>
@@ -198,13 +198,13 @@ export function CheckoutPage({ onNavigate }: CheckoutPageProps) {
                 </div>
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">Tax</span>
-                  <span>${(getCartTotal() * 0.08).toFixed(2)}</span>
+                  <span>N{(getCartTotal() * 0.08).toFixed(2)}</span>
                 </div>
                 <Separator />
                 <div className="flex justify-between">
                   <span>Total</span>
                   <span className="text-xl">
-                    $
+                    N
                     {(
                       getCartTotal() +
                       (getCartTotal() > 50 ? 0 : 5.99) +

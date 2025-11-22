@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { Product } from "../types/product";
 
 
@@ -6,7 +5,7 @@ export const products: Product[] = [
   {
     id: "1",
     name: "Premium Beef Ribeye",
-    price: 24.99,
+    price: 7500,
     category: "Meat",
     image: "/beef.jpg",
     description: "Grass-fed beef ribeye steak, perfectly marbled and tender. 1 lb.",
@@ -15,7 +14,7 @@ export const products: Product[] = [
   {
     id: "2",
     name: "Organic Roma Tomatoes",
-    price: 4.99,
+    price: 8000,
     category: "Vegetables",
     image: "/tomato.jpg",
     description: "Fresh organic Roma tomatoes, perfect for sauces and salads. 2 lbs.",
@@ -24,7 +23,7 @@ export const products: Product[] = [
   {
     id: "3",
     name: "Free-Range Chicken Breast",
-    price: 12.99,
+    price: 15000,
     category: "Meat",
     image: "/beef.jpg",
     description: "Boneless, skinless chicken breast from free-range birds. 1.5 lbs.",
@@ -33,7 +32,7 @@ export const products: Product[] = [
   {
     id: "4",
     name: "Fresh Atlantic Salmon",
-    price: 18.99,
+    price: 19500,
     category: "Seafood",
     image: "/seafood.jpeg",
     description: "Wild-caught Atlantic salmon fillet, rich in omega-3. 1 lb.",
@@ -42,7 +41,7 @@ export const products: Product[] = [
   {
     id: "5",
     name: "Mixed Vegetables",
-    price: 6.99,
+    price: 6000,
     category: "Vegetables",
     image: "/ingredient.jpg",
     description: "Fresh seasonal vegetables including bell peppers, carrots, and zucchini.",
@@ -51,7 +50,7 @@ export const products: Product[] = [
   {
     id: "6",
     name: "Fresh Herb Bundle",
-    price: 5.99,
+    price: 8000,
     category: "Vegetables",
     image: "/beverages.jpeg",
     description: "Assorted fresh herbs including basil, parsley, and rosemary.",
@@ -60,7 +59,7 @@ export const products: Product[] = [
   {
     id: "7",
     name: "Farm Fresh Eggs",
-    price: 7.99,
+    price: 5000,
     category: "Dairy & Eggs",
     image: "/egg.jpeg",
     description: "Free-range organic eggs from local farms. Dozen.",
@@ -69,7 +68,7 @@ export const products: Product[] = [
   {
     id: "8",
     name: "Ground Beef",
-    price: 9.99,
+    price: 9000,
     category: "Meat",
     image: "/beef.jpg",
     description: "85% lean ground beef, perfect for burgers and meatballs. 1 lb.",
@@ -78,7 +77,7 @@ export const products: Product[] = [
   {
     id: "9",
     name: "Cherry Tomatoes",
-    price: 3.99,
+    price: 4000,
     category: "Vegetables",
     image: "/tomato-ball.jpg",
     description: "Sweet and juicy cherry tomatoes on the vine. 1 lb.",
@@ -87,7 +86,7 @@ export const products: Product[] = [
   {
     id: "10",
     name: "Pork Tenderloin",
-    price: 15.99,
+    price: 12000,
     category: "Meat",
     image: "/beef.jpg",
     description: "Premium pork tenderloin, lean and flavorful. 1.5 lbs.",
@@ -96,7 +95,7 @@ export const products: Product[] = [
   {
     id: "11",
     name: "Heirloom Tomatoes",
-    price: 6.99,
+    price: 6000,
     category: "Vegetables",
     image: "/vegetable.jpg",
     description: "Colorful heirloom tomatoes with rich, complex flavors. 1.5 lbs.",
@@ -105,7 +104,7 @@ export const products: Product[] = [
   {
     id: "12",
     name: "Wild-Caught Shrimp",
-    price: 16.99,
+    price: 16000,
     category: "Seafood",
     image: "/seafood.jpeg",
     description: "Large wild-caught shrimp, peeled and deveined. 1 lb.",
