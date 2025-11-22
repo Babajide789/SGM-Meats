@@ -1,11 +1,11 @@
-import { HomePage } from "@/components/HomePage";
+// import { HomePage } from "@/components/HomePage";
 
 
 
-export default function HomePage() {
-    return(
-        <>
-            <HomePage/>
-        </>
-    )
-}
+// export default function HomePage() {
+//     return(
+//         <>
+//             <HomePage/>
+//         </>
+//     )
+// }

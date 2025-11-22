@@ -1,6 +1,13 @@
-import { createContext, useContext, useState, ReactNode } from "react";
+"use client";
+
+import {
+  createContext,
+  useContext,
+  useState,
+  ReactNode,
+  useEffect,
+} from "react";
 import { CartItem, Product } from "../types/product";
-import { X } from "lucide-react";
 
 interface CartContextType {
   cart: CartItem[];
@@ -13,9 +20,26 @@ interface CartContextType {
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
-    X
+
 export function CartProvider({ children }: { children: ReactNode }) {
-  const [cart, setCart] = useState<CartItem[]>([]);
+  /** ✅ Load cart from localStorage *inside* useState initializer */
+  const [cart, setCart] = useState<CartItem[]>(() => {
+    if (typeof window === "undefined") return [];
+    try {
+      const stored = localStorage.getItem("cart");
+      return stored ? JSON.parse(stored) : [];
+    } catch {
+      console.warn("Failed to parse stored cart");
+      return [];
+    }
+  });
+
+  /** Sync cart to localStorage whenever cart changes */
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
+
+  // -------- CART FUNCTIONS --------
 
   const addToCart = (product: Product) => {
     setCart((prevCart) => {
@@ -36,10 +60,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
   };
 
   const updateQuantity = (productId: string, quantity: number) => {
-    if (quantity <= 0) {
-      removeFromCart(productId);
-      return;
-    }
+    if (quantity <= 0) return removeFromCart(productId);
+
     setCart((prevCart) =>
       prevCart.map((item) =>
         item.id === productId ? { ...item, quantity } : item
@@ -49,15 +71,14 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   const clearCart = () => {
     setCart([]);
+    localStorage.removeItem("cart");
   };
 
-  const getCartTotal = () => {
-    return cart.reduce((total, item) => total + item.price * item.quantity, 0);
-  };
+  const getCartTotal = () =>
+    cart.reduce((total, item) => total + item.price * item.quantity, 0);
 
-  const getCartCount = () => {
-    return cart.reduce((count, item) => count + item.quantity, 0);
-  };
+  const getCartCount = () =>
+    cart.reduce((count, item) => count + item.quantity, 0);
 
   return (
     <CartContext.Provider

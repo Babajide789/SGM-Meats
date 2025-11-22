@@ -1,26 +1,23 @@
+"use client";
+
+import Link from "next/link";
 import { ShoppingCart, Menu, X } from "lucide-react";
 import { useState } from "react";
 import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
 import { useCart } from "@/Context/CartContext";
 
-interface HeaderProps {
-  onNavigate: (page: string) => void;
-  currentPage: string;
-}
-
-export function Header({ onNavigate, currentPage }: HeaderProps) {
+export function Header() {
   const { getCartCount } = useCart();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur `supports-backdrop-filter:bg-background/60`">
+    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60">
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
-          <button
-            onClick={() => onNavigate("home")}
-            className="flex items-center space-x-2"
-          >
+
+          {/* Logo */}
+          <Link href="/" className="flex items-center space-x-2">
             <div className="h-8 w-8 rounded-lg bg-primary flex items-center justify-center">
               <svg
                 className="w-5 h-5 text-primary-foreground"
@@ -36,42 +33,33 @@ export function Header({ onNavigate, currentPage }: HeaderProps) {
                 />
               </svg>
             </div>
-            <span className="font-bold">SGM-Meat</span>
-          </button>
+            <span className="font-bold">Open Market</span>
+          </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-6">
-            <button
-              onClick={() => onNavigate("home")}
-              className={currentPage === "home" ? "text-primary" : ""}
-            >
+            <Link href="/" className="hover:text-primary transition">
               Home
-            </button>
-            <button
-              onClick={() => onNavigate("shop")}
-              className={currentPage === "shop" ? "text-primary" : ""}
-            >
+            </Link>
+            <Link href="/shop" className="hover:text-primary transition">
               Shop
-            </button>
+            </Link>
           </nav>
 
-          {/* Cart Button */}
+          {/* Cart + Mobile Menu */}
           <div className="flex items-center space-x-4">
-            <Button
-              variant="ghost"
-              size="icon"
-              className="relative"
-              onClick={() => onNavigate("cart")}
-            >
-              <ShoppingCart className="h-5 w-5" />
-              {getCartCount() > 0 && (
-                <Badge className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0">
-                  {getCartCount()}
-                </Badge>
-              )}
-            </Button>
+            <Link href="/check-out">
+              <Button variant="ghost" size="icon" className="relative">
+                <ShoppingCart className="h-5 w-5" />
+                {getCartCount() > 0 && (
+                  <Badge className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0">
+                    {getCartCount()}
+                  </Badge>
+                )}
+              </Button>
+            </Link>
 
-            {/* Mobile Menu Toggle */}
+            {/* Mobile Menu Button */}
             <button
               className="md:hidden"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -85,28 +73,24 @@ export function Header({ onNavigate, currentPage }: HeaderProps) {
           </div>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Mobile Navigation */}
         {mobileMenuOpen && (
           <div className="md:hidden py-4 border-t">
             <nav className="flex flex-col space-y-4">
-              <button
-                onClick={() => {
-                  onNavigate("home");
-                  setMobileMenuOpen(false);
-                }}
-                className={currentPage === "home" ? "text-primary text-left" : "text-left"}
+              <Link
+                href="/"
+                onClick={() => setMobileMenuOpen(false)}
+                className="text-left hover:text-primary"
               >
                 Home
-              </button>
-              <button
-                onClick={() => {
-                  onNavigate("shop");
-                  setMobileMenuOpen(false);
-                }}
-                className={currentPage === "shop" ? "text-primary text-left" : "text-left"}
+              </Link>
+              <Link
+                href="/shop"
+                onClick={() => setMobileMenuOpen(false)}
+                className="text-left hover:text-primary"
               >
                 Shop
-              </button>
+              </Link>
             </nav>
           </div>
         )}
