@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { useCart } from "@/Context/CartContext"; // ← FIXED IMPORT
+import { useCart } from "@/Context/CartContext";
 
 export default function RedirectClient({
   clearCartOnLoad = false,
@@ -10,18 +10,18 @@ export default function RedirectClient({
   clearCartOnLoad?: boolean;
 }) {
   const router = useRouter();
-  const { clearCart } = useCart(); // ← FIXED: using CartContext
+  const { clearCart } = useCart(); // memoized, stable reference
 
   const [seconds, setSeconds] = useState(5);
 
-  // Clear cart ONLY for success page
+  // Clear cart ONLY once on load if requested
   useEffect(() => {
     if (clearCartOnLoad) {
       clearCart();
     }
   }, [clearCartOnLoad, clearCart]);
 
-  // Countdown logic
+  // Countdown timer
   useEffect(() => {
     if (seconds <= 0) return;
 
