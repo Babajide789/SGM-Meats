@@ -38,6 +38,8 @@ export default function RootLayout({
             {children}
             <Footer />
             <Toaster />
+
+            <Analytics />
           </div>
         </CartProvider>
       </body>
