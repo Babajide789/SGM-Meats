@@ -36,7 +36,7 @@ export function Footer() {
               <li>SGM-Meat</li>
               <li>Vegetables</li>
               <li>Seafood</li>
-              <li>Dairy & Eggs</li>
+              <li>Dairy & Eggs </li>
             </ul>
           </div>
 
